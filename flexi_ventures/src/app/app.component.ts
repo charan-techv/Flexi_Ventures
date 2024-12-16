@@ -1,12 +1,16 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { DynamicFormComponent } from './dynamic-form.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  standalone: true,
+  imports: [DynamicFormComponent],
+  template: `
+    <div>
+      <h1>Dynamic Form Builder</h1>
+      <app-dynamic-form></app-dynamic-form>
+    </div>
+  `,
+  styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
-  title = 'flexi_ventures';
-}
+export class AppComponent {}
