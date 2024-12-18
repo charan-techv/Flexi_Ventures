@@ -1,1 +1,63 @@
-<p>dynamic-form works!</p>
+<form [formGroup]="orderForm" (ngSubmit)="onSubmit(orderForm)" >
+    <div>
+      <label for="orderNo">Order No</label>
+      <input id="orderNo" formControlName="orderNo" type="text"  (keypress)="enterorederNO($event,orderForm)"/>
+      <div *ngIf="orderForm.get('orderNo')?.invalid && orderForm.get('orderNo')?.touched">
+        Order No is required.
+      </div>
+    </div>
+  
+    <div>
+      <label for="orderedDate">Ordered Date</label>
+      <input id="orderedDate" formControlName="orderedDate" type="date" />
+      <div *ngIf="orderForm.get('orderedDate')?.invalid && orderForm.get('orderedDate')?.touched">
+        Ordered Date is required.
+      </div>
+    </div>
+  
+    <div>
+      <label for="orderedInfo">Ordered Info</label>
+      <input id="orderedInfo" formControlName="orderedInfo" type="text"  [ngClass]="{ 'disabled':disablefield }" />
+      <div *ngIf="orderForm.get('orderedInfo')?.invalid && orderForm.get('orderedInfo')?.touched">
+        Ordered Info is required.
+      </div>
+    </div>
+  
+    <div>
+      <label for="price">Price</label>
+      <input id="price" formControlName="price" type="number" />
+      <div *ngIf="orderForm.get('price')?.invalid && orderForm.get('price')?.touched">
+        Price is required and must be a positive number.
+      </div>
+    </div>
+  
+    <div>
+      <label for="refurbished">Refurbished </label>
+      <select id="refurbished" formControlName="refurbished">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+    </div>
+  
+    <div>
+      <label for="address">Address</label>
+      <input id="address" formControlName="address" type="text" />
+      <div *ngIf="orderForm.get('address')?.hasError('addressRequired') && orderForm.get('address')?.touched">
+        Address is required based on the conditions.
+      </div>
+    </div>
+  
+    <button type="submit" [disabled]="orderForm.invalid">Submit</button>
+  </form>
+  
+<div *ngIf="finalresult!=''">
+   <span>
+     "Order No": {{finalresult?.orderNo}}
+        "OrderedDate":{{finalresult?.orderedDate}}
+        "Price": {{finalresult?.price}}
+        "Refurbished":{{finalresult?.refurbished}}
+        "Address":{{finalresult?.address}}
+        
+   </span>
+</div>
+
