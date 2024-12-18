@@ -13,4 +13,6 @@ import { DynamicFormComponent } from './dynamic-form.component';
   `,
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {}
+export class AppComponent {
+  title: any;
+}
