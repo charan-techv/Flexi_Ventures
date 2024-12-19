@@ -9,7 +9,7 @@
             {{ field.name }} <span *ngIf="field.validator?.includes('required')">*</span>
           </label>
           <input
-            *ngIf="field.fieldtype === 'text'"
+            *ngIf="field.fieldtype === 'text'" (keypress)="enterorederNO($event,orderForm)"
             [formControlName]="field.name" type="text"  required />
           <input
             *ngIf="field.fieldtype === 'date'"

@@ -27,6 +27,7 @@ export class DynamicFormComponent implements OnInit {
     Address: "",
     Refurbished: ""
   }
+  disablefield: boolean;
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
@@ -73,6 +74,20 @@ export class DynamicFormComponent implements OnInit {
     if (!field.condition) return true;
     
     return this.conditionService.evaluateCondition(field, this.form.value);
+  }
+
+  enterorederNO(event: { key: any; },slval: { value: { orderNo: any; orderedDate: string; }; })
+  {
+    let val=slval?.value?.orderNo+event.key
+    debugger
+    if((+val<10 && (slval?.value?.orderedDate!="")) || (+val<20 && slval?.value?.orderedDate==''))
+    {
+      this.disablefield=true
+    }
+    else
+    {
+      this.disablefield=false
+    }
   }
 
   onSubmit() {
